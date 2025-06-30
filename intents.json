@@ -2,41 +2,33 @@
   "intents": [
     {
       "tag": "greeting",
-      "patterns": ["Hi", "Hello", "Hey", "What's up?", "How's it going?", "Good morning", "Good evening", "Hey there", "Hi there", "Yo", "Greetings", "Sup", "Hola"],
-      "responses": ["Hello! How can I help you?", "Hi there! What can I do for you today?", "Hey! How are you doing?", "Hi! Need any assistance?", "Hello! I'm here to help."]
+      "patterns": ["hi", "hello", "hey", "what's up", "yo"],
+      "responses": ["Hi there!", "Hello!", "Hey! How can I help you?"]
     },
     {
       "tag": "goodbye",
-      "patterns": ["Bye", "See you", "Goodbye", "Catch you later", "Talk to you later", "I'm leaving", "See you around", "Later", "Take care", "Peace out"],
-      "responses": ["Goodbye! Take care.", "See you soon!", "Have a great day!", "Catch you later!", "Bye! Feel free to return anytime."]
-    },
-    {
-      "tag": "thanks",
-      "patterns": ["Thanks", "Thank you", "I appreciate it", "Thanks a lot", "Much appreciated", "Thanks for your help", "Many thanks", "Cheers", "Thank you very much", "I'm grateful"],
-      "responses": ["You're welcome!", "No problem!", "Glad I could help!", "Anytime!", "Happy to help!"]
-    },
-    {
-      "tag": "weather",
-      "patterns": ["What's the weather in Paris?", "Tell me the weather for New York", "Weather in London", "How's the weather at Tokyo?", "Show me weather for Delhi", "Is it raining in San Francisco?", "What's the temperature in Mumbai?", "Weather forecast for Sydney", "Tell me weather", "Weather"],
-      "responses": ["Please tell me the location you want the weather for.", "Sure, I can provide weather updates. Where exactly?", "Which city's weather do you want to know about?"]
-    },
-    {
-      "tag": "news",
-      "patterns": ["Tell me the latest news", "What's new in technology?", "Give me news about sports", "News about politics", "Latest headlines", "Any news on health", "What's happening in entertainment?", "News on business", "Show me latest news", "Tell me news"],
-      "responses": ["What topic are you interested in?", "Which category of news do you want?", "Please specify a news topic."]
+      "patterns": ["bye", "goodbye", "see you", "talk later"],
+      "responses": ["Goodbye! Have a great day.", "See you soon!", "Take care!"]
     },
     {
       "tag": "tictactoe",
-      "patterns": [
-        "Play tic tac toe", "Start game", "New game", "Start tictactoe", "Play tictactoe", "I want to play a game",
-        "0,0", "0,1", "0,2", "1,0", "1,1", "1,2", "2,0", "2,1", "2,2"
-      ],
-      "responses": ["Let's play Tic Tac Toe! You are X. Send your move as row,col (e.g., 1,1)."]
+      "patterns": ["tictactoe", "play tic tac toe", "start tictactoe"],
+      "responses": ["Game started! You are X. Make your move using row,col (0-2)."]
+    },
+    {
+      "tag": "news",
+      "patterns": ["news", "show news", "tech news", "sports news", "politics news"],
+      "responses": ["Fetching the latest news for you..."]
+    },
+    {
+      "tag": "codegen",
+      "patterns": ["generate code", "write code", "code in python", "code in c++"],
+      "responses": ["Sure! What do you want me to generate?"]
     },
     {
       "tag": "fallback",
       "patterns": [],
-      "responses": ["I'm not sure I understood that. Could you rephrase?", "Sorry, I didn't get that. Try asking in a different way.", "Hmm, that doesn’t match anything I know. Want to try again?"]
+      "responses": ["Sorry, I didn't understand that.", "Can you please rephrase?"]
     }
   ]
 }
