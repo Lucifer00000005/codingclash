@@ -53,8 +53,7 @@ function appendMessage(message, sender) {
   const msg = document.createElement('div');
   msg.className = sender === "user" ? "user-message" : "bot-message";
 
-  // Use <pre> for preformatted text like the board
-  if (message.includes('+---') || message.includes('|')) {
+  if (message.includes(" | ") || message.includes("You win") || message.includes("I win") || message.includes("draw")) {
     const pre = document.createElement('pre');
     pre.textContent = message;
     msg.appendChild(pre);
@@ -102,6 +101,3 @@ document.getElementById("userInput").addEventListener("keypress", function (even
     sendMessage();
   }
 });
-
-document.getElementById("ttsToggle").addEventListener("click", toggleTTS);
-document.getElementById("micBtn").addEventListener("click", toggleSpeechRecognition);
