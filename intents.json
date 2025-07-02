@@ -2,33 +2,43 @@
   "intents": [
     {
       "tag": "greeting",
-      "patterns": ["hi", "hello", "hey", "what's up", "yo"],
-      "responses": ["Hi there!", "Hello!", "Hey! How can I help you?"]
+      "patterns": ["hi", "hello", "hey", "what's up", "how are you"],
+      "responses": ["Hello!", "Hi there!", "Hey! How can I help you today?"]
     },
     {
       "tag": "goodbye",
-      "patterns": ["bye", "goodbye", "see you", "talk later"],
-      "responses": ["Goodbye! Have a great day.", "See you soon!", "Take care!"]
+      "patterns": ["bye", "goodbye", "see you later", "talk to you later"],
+      "responses": ["Goodbye!", "See you soon!", "Take care!"]
     },
     {
-      "tag": "tictactoe",
-      "patterns": ["tictactoe", "play tic tac toe", "start tictactoe"],
-      "responses": ["Game started! You are X. Make your move using row,col (0-2)."]
+      "tag": "thanks",
+      "patterns": ["thank you", "thanks", "thanks a lot", "thank you very much"],
+      "responses": ["You're welcome!", "No problem!", "Glad to help!"]
+    },
+    {
+      "tag": "weather",
+      "patterns": ["weather", "weather in delhi", "what's the weather", "how is the weather in mumbai"],
+      "responses": ["Please tell me the city name after the word 'weather'. For example: weather mumbai"]
     },
     {
       "tag": "news",
-      "patterns": ["news", "show news", "tech news", "sports news", "politics news"],
+      "patterns": ["news", "latest news", "news about sports", "show me technology news"],
       "responses": ["Fetching the latest news for you..."]
     },
     {
       "tag": "codegen",
-      "patterns": ["generate code", "write code", "code in python", "code in c++"],
-      "responses": ["Sure! What do you want me to generate?"]
+      "patterns": ["generate code", "write code", "generate code in python", "write code in c++"],
+      "responses": ["What would you like me to generate code for? Please specify the task."]
+    },
+    {
+      "tag": "tictactoe",
+      "patterns": ["tictactoe", "play tic tac toe", "let's play tictactoe", "tic tac toe"],
+      "responses": ["Game started! You are X. Use row,col (0–2)."]
     },
     {
       "tag": "fallback",
       "patterns": [],
-      "responses": ["Sorry, I didn't understand that.", "Can you please rephrase?"]
+      "responses": ["I'm sorry, I didn't understand that. Could you please rephrase?"]
     }
   ]
 }
