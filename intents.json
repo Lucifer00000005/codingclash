@@ -2,43 +2,107 @@
   "intents": [
     {
       "tag": "greeting",
-      "patterns": ["hi", "hello", "hey", "what's up", "how are you"],
-      "responses": ["Hello!", "Hi there!", "Hey! How can I help you today?"]
+      "patterns": ["Hi", "Hey", "Hello", "Good morning", "Good evening"],
+      "responses": ["Hello!", "Hi there!", "Hey!", "Greetings! How can I assist you today?"]
     },
     {
       "tag": "goodbye",
-      "patterns": ["bye", "goodbye", "see you later", "talk to you later"],
-      "responses": ["Goodbye!", "See you soon!", "Take care!"]
+      "patterns": ["Bye", "See you later", "Goodbye", "Talk to you later"],
+      "responses": ["Goodbye!", "Take care!", "See you later!", "Have a great day!"]
     },
     {
       "tag": "thanks",
-      "patterns": ["thank you", "thanks", "thanks a lot", "thank you very much"],
-      "responses": ["You're welcome!", "No problem!", "Glad to help!"]
+      "patterns": ["Thanks", "Thank you", "That's helpful", "Thanks a lot"],
+      "responses": ["You're welcome!", "Glad I could help!", "Anytime!", "No problem!"]
     },
     {
       "tag": "weather",
-      "patterns": ["weather", "weather in delhi", "what's the weather", "how is the weather in mumbai"],
-      "responses": ["Please tell me the city name after the word 'weather'. For example: weather mumbai"]
+      "patterns": ["What's the weather like in Delhi?", "Tell me the weather in New York", "weather in London", "show me weather report", "how is the weather today?"],
+      "responses": ["Fetching weather details for you..."]
     },
     {
       "tag": "news",
-      "patterns": ["news", "latest news", "news about sports", "show me technology news"],
+      "patterns": ["Show me news", "What's the latest news?", "Give me tech news", "news on politics", "sports news"],
       "responses": ["Fetching the latest news for you..."]
     },
     {
-      "tag": "codegen",
-      "patterns": ["generate code", "write code", "generate code in python", "write code in c++"],
-      "responses": ["What would you like me to generate code for? Please specify the task."]
+      "tag": "tictactoe",
+      "patterns": ["Let's play tic tac toe", "Start tic tac toe", "Play tic tac toe", "tic tac toe", "0,0", "1,1", "2,2", "1,2"],
+      "responses": ["Let's play Tic Tac Toe! You go first. Enter your move as row,column (e.g., 0,1)"]
     },
     {
-      "tag": "tictactoe",
-      "patterns": ["tictactoe", "play tic tac toe", "let's play tictactoe", "tic tac toe"],
-      "responses": ["Game started! You are X. Use row,col (0–2)."]
+      "tag": "code_generator",
+      "patterns": ["Generate Python code to add two numbers", "Write C++ code for binary search", "give me code for bubble sort in python", "create a python program to calculate factorial", "C++ code to reverse an array"],
+      "responses": ["Sure, generating code for you..."]
+    },
+    {
+      "tag": "trip_planner",
+      "patterns": [
+        "Plan a trip to Goa",
+        "What to do in Manali?",
+        "I want to visit Rajasthan",
+        "Tell me about Kerala tourism",
+        "Suggest places to visit in Gujarat",
+        "Things to do in Himachal",
+        "Travel ideas for Uttarakhand",
+        "Vacation spots in India",
+        "Help me plan a holiday",
+        "I need travel suggestions"
+      ],
+      "responses": [
+        "Sure! Give me the location you want to visit and I'll suggest top places and activities.",
+        "I'd love to help! Which destination are you planning to go to?",
+        "Tell me the city or state you're interested in, and I’ll give you travel tips and must-visit spots.",
+        "Let’s plan your trip! Where are you heading to?"
+      ]
+    },
+    {
+      "tag": "mental_health_support",
+      "patterns": [
+        "I feel depressed",
+        "I'm not okay",
+        "I’m feeling anxious",
+        "I'm stressed out",
+        "I'm overwhelmed",
+        "I need someone to talk to",
+        "I feel lonely",
+        "I'm having a rough time",
+        "I'm sad",
+        "I'm angry",
+        "I feel like giving up",
+        "I'm frustrated",
+        "Nothing makes sense anymore",
+        "I'm scared",
+        "I'm tired of everything",
+        "I'm mentally exhausted",
+        "I'm worried about everything",
+        "I feel hopeless",
+        "My heart feels heavy",
+        "I'm crying for no reason",
+        "I can't take this anymore",
+        "I feel worthless",
+        "Why is life so hard?",
+        "Everything is falling apart"
+      ],
+      "responses": [
+        "I'm really sorry you're feeling this way. You're not alone, and I'm here for you.",
+        "It’s okay to feel this way. Take a deep breath. You’re doing your best.",
+        "Even when things feel dark, please remember that things can get better. You're stronger than you think.",
+        "Try to pause for a moment and breathe deeply. I'm here to listen anytime.",
+        "You're not alone. Talking to someone — a friend, family member, or a professional — can really help.",
+        "I'm here with you. Would you like to try a calming technique or hear a motivational quote?",
+        "I'm sorry you're going through this. Please be kind to yourself. One step at a time.",
+        "Pain is temporary, even though it doesn’t feel that way right now. You matter.",
+        "It’s okay to cry. It’s okay to feel. What you’re feeling is valid and real.",
+        "No matter how heavy it feels, you’re not alone in this. I'm listening.",
+        "Take a few minutes to breathe. Your feelings are important and you're allowed to feel them.",
+        "Your life has value. Please don’t give up. Better days can still come."
+      ]
     },
     {
       "tag": "fallback",
       "patterns": [],
-      "responses": ["I'm sorry, I didn't understand that. Could you please rephrase?"]
+      "responses": ["I'm sorry, I didn't understand that. Can you rephrase?"]
     }
   ]
 }
