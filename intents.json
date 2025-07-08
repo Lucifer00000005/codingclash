@@ -2,101 +2,95 @@
   "intents": [
     {
       "tag": "greeting",
-      "patterns": ["Hi", "Hey", "Hello", "Good day", "What's up?", "Yo"],
-      "responses": ["Hello there!", "Hi! How can I help you today?", "Hey!"]
+      "patterns": [
+        "Hi",
+        "Hello",
+        "Hey",
+        "Good morning",
+        "Good evening",
+        "What's up?"
+      ],
+      "responses": [
+        "Hello! How can I help you today?",
+        "Hi there! What can I do for you?",
+        "Hey! Need assistance with something?"
+      ]
     },
     {
       "tag": "goodbye",
-      "patterns": ["Bye", "Goodbye", "See you later", "Talk to you later"],
-      "responses": ["Goodbye!", "See you later!", "Have a great day!"]
+      "patterns": [
+        "Bye",
+        "See you later",
+        "Goodbye",
+        "Catch you later"
+      ],
+      "responses": [
+        "Goodbye! Take care.",
+        "See you later!",
+        "Bye! Let me know if you need anything else."
+      ]
     },
     {
       "tag": "thanks",
-      "patterns": ["Thanks", "Thank you", "That's helpful", "Thanks a lot"],
-      "responses": ["You're welcome!", "No problem!", "Anytime!", "Glad I could help."]
+      "patterns": [
+        "Thanks",
+        "Thank you",
+        "That's helpful",
+        "Thanks a lot"
+      ],
+      "responses": [
+        "You're welcome!",
+        "Glad I could help!",
+        "Anytime! 😊"
+      ]
     },
     {
       "tag": "mental_health_support",
       "patterns": [
-        "I'm feeling low",
+        "I'm feeling down",
         "I'm stressed",
         "I'm anxious",
-        "I have depression",
-        "I need mental help",
-        "feeling lonely",
-        "I am not okay"
+        "I feel depressed",
+        "I need help with my mental health"
       ],
       "responses": [
-        "I'm really sorry you're feeling this way. You're not alone, and things can get better.",
-        "Take a deep breath. You matter, and help is always available.",
-        "I'm here for you. Sometimes sharing how you're feeling can really help.",
-        "You are not alone. Consider talking to a friend, counselor, or loved one.",
-        "Be kind to yourself. Even small steps count toward healing."
+        "I'm here for you. Remember, you're not alone. Talking to a counselor can help.",
+        "It's okay to feel that way. Consider taking a short walk, journaling, or reaching out to someone you trust.",
+        "Your feelings are valid. If it gets overwhelming, don't hesitate to speak with a mental health professional."
       ]
     },
     {
-      "tag": "tictactoe",
-      "patterns": ["Let's play Tic Tac Toe", "Start Tic Tac Toe", "Play Tic Tac Toe", "tictactoe", "tic tac toe"],
-      "responses": ["Game started! You are X. Use row,col (0–2) to make a move."]
-    },
-    {
-      "tag": "weather",
-      "patterns": ["weather in Delhi", "weather in Mumbai", "What's the weather", "weather update", "how's the weather"],
-      "responses": ["Fetching weather for you..."]
-    },
-    {
-      "tag": "news",
-      "patterns": ["latest news", "technology news", "sports news", "show me news", "get news"],
-      "responses": ["Let me get the latest news for you..."]
-    },
-    {
-      "tag": "code_generator",
+      "tag": "health_tips",
       "patterns": [
-        "generate code for bubble sort",
-        "write code for linked list",
-        "code for factorial",
-        "create C++ program for palindrome",
-        "write python code to check prime number"
-      ],
-      "responses": ["Sure, let me get that code for you..."]
-    },
-    {
-      "tag": "trip_suggestions",
-      "patterns": [
-        "trip to Goa",
-        "places to visit in Manali",
-        "travel suggestions for Kerala",
-        "vacation spots in Rajasthan",
-        "tourist places in Himachal",
-        "top places to visit in India"
-      ],
-      "responses": ["Here are some top places to visit:"]
-    },
-    {
-      "tag": "dating_tips",
-      "patterns": [
-        "how to talk to my crush",
-        "give me dating tips",
-        "advice on love",
-        "how to impress my crush",
-        "how to approach someone I like",
-        "tips for first date"
+        "Give me some health tips",
+        "How can I stay healthy?",
+        "Suggest fitness ideas",
+        "Tips to stay fit",
+        "Daily health routine",
+        "What are some ways to stay healthy?",
+        "Fitness tips please"
       ],
       "responses": [
-        "Be confident but not arrogant. Confidence is attractive.",
-        "Listen more than you speak. Ask open-ended questions.",
-        "Be genuine and kind. Authenticity always wins.",
-        "Have a sense of humor and keep things light on the first few dates.",
-        "Respect their boundaries and never rush things.",
-        "Plan something thoughtful -- it shows you care!",
-        "Good hygiene and grooming are non-negotiable.",
-        "Don't be afraid of silence -- let the conversation breathe."
+        "Sure! Here's some health advice for you. 💪",
+        "Absolutely! Let's look at some ways to boost your fitness.",
+        "Here are a few tips to help improve your physical health:"
       ]
     },
     {
       "tag": "fallback",
       "patterns": [],
-      "responses": ["I'm not sure how to respond to that. Could you rephrase?"]
+      "responses": [
+        "Sorry, I didn't understand that. Can you rephrase?",
+        "I'm not sure I follow. Could you say that again?",
+        "Hmm, that doesn't seem clear. Try asking differently?"
+      ]
+    },
+    {
+    
+  "tag": "makeup",
+  "patterns": ["give me makeup tips", "makeup ideas", "beauty tips", "makeup advice", "makeup suggestions"],
+  "responses": ["Sure! Here's some makeup guidance for you."
+]
     }
   ]
 }
