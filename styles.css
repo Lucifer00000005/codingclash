@@ -60,7 +60,7 @@ h1 {
   margin: 5px;
   align-self: flex-start;
   max-width: 80%;
-  white-space: pre-wrap;
+  white-space: pre;
   word-break: break-word;
   overflow-x: auto;
   font-family: monospace;
@@ -68,7 +68,7 @@ h1 {
 
 .bot-message pre {
   margin: 0;
-  white-space: pre-wrap;
+  white-space: pre;
   word-break: break-word;
   overflow-x: auto;
 }
