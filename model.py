@@ -38,10 +38,10 @@ clf.fit(X, training_labels)
 # Flask app
 app = Flask(__name__)
 
-# GNews API
+# GNews API Key
 GNEWS_API_KEY = "0de65d25bb67f3c62a71b5e822a4d200"
 
-# Tic Tac Toe state
+# Game state for Tic Tac Toe
 game_state = {
     "board": [["" for _ in range(3)] for _ in range(3)],
     "user": "X",
@@ -49,7 +49,7 @@ game_state = {
     "active": False
 }
 
-# Utility functions
+# ---------- Tic Tac Toe Utilities ----------
 def format_board():
     return "\n".join([" | ".join(cell if cell else " " for cell in row) for row in game_state["board"]])
 
@@ -69,6 +69,7 @@ def minimax(board, is_maximizing):
     if check_winner(board, game_state["bot"]): return 1
     if check_winner(board, game_state["user"]): return -1
     if is_full(board): return 0
+
     if is_maximizing:
         best_score = -float("inf")
         for i in range(3):
@@ -104,7 +105,7 @@ def best_move():
                     move = (i, j)
     return move
 
-# GFG code scraper
+# ---------- External Feature Functions ----------
 def fetch_code_from_gfg(query):
     try:
         logging.debug("Searching GFG for: " + query)
@@ -122,7 +123,6 @@ def fetch_code_from_gfg(query):
         logging.error(f"GFG scraping error: {e}")
         return "Failed to fetch code from GFG."
 
-# Holidify top places scraper
 def scrape_travel_places(location):
     try:
         logging.debug(f"Searching Holidify for: {location}")
@@ -142,7 +142,69 @@ def scrape_travel_places(location):
         logging.error(f"Trip planner scrape error: {e}")
         return "Something went wrong while fetching travel recommendations."
 
-# Chat route
+def get_fitness_tips():
+    try:
+        url = "https://www.healthline.com/health/fitness-exercise"
+        html = requests.get(url, timeout=10).text
+        soup = BeautifulSoup(html, "html.parser")
+        tips = soup.find_all("a", class_="css-1egxyvc")
+        clean_tips = []
+        for tip in tips[:6]:
+            text = tip.get_text(strip=True)
+            if 10 < len(text) < 100:
+                clean_tips.append(f"• {text}")
+        return "\n".join(["Here are some fitness tips:"] + clean_tips) if clean_tips else None
+    except Exception as e:
+        logging.error(f"Fitness scraping error: {e}")
+        return None
+
+def get_makeup_tips(user_input=""):
+    user_input = user_input.lower()
+
+    if "oily" in user_input:
+        return "💧 Oily Skin Tips:\n• Use matte, oil-free foundation.\n• Blotting papers help remove shine.\n• Avoid heavy creams.\n• Set makeup with powder."
+
+    if "dry" in user_input:
+        return "🌿 Dry Skin Tips:\n• Use hydrating primer & cream foundation.\n• Avoid powders.\n• Blend with damp sponge.\n• Finish with dewy mist."
+
+    if "acne" in user_input or "acne-prone" in user_input:
+        return "🌼 Acne-Prone Skin Tips:\n• Use non-comedogenic foundation.\n• Avoid clogging heavy concealers.\n• Clean tools regularly.\n• Don’t skip moisturizer."
+
+    if "combination" in user_input:
+        return "🌟 Combination Skin Tips:\n• Matte foundation on T-zone.\n• Hydrating on dry areas.\n• Use semi-matte blends.\n• Customize per zone."
+
+    if "foundation" in user_input or "blend" in user_input:
+        return "🧴 Foundation Guide:\n• Oily: Matte, oil-free.\n• Dry: Dewy, cream.\n• Acne: Non-comedogenic.\n• Combo: Semi-matte."
+
+    try:
+        url = "https://www.byrdie.com/makeup-tips-4847098"
+        html = requests.get(url, timeout=10).text
+        soup = BeautifulSoup(html, "html.parser")
+        paragraphs = soup.find_all("p")
+        tips = [p.text.strip() for p in paragraphs if 30 < len(p.text.strip()) < 250]
+        if tips:
+            return "💄 General Makeup Tips:\n" + "\n".join([f"• {tip}" for tip in tips[:5]])
+    except:
+        pass
+
+    fallback_tips = [
+        "Always prep your skin with a moisturizer.",
+        "Use primer to extend makeup longevity.",
+        "Choose foundation that matches your undertone.",
+        "Use setting spray for longer wear.",
+        "Remove makeup before bed to avoid breakouts."
+    ]
+    return "💄 General Makeup Tips:\n" + "\n".join([f"• {tip}" for tip in fallback_tips])
+
+dating_tips = [
+    "• Be yourself. Authenticity is attractive.",
+    "• Listen more than you speak.",
+    "• Keep your first date light and casual.",
+    "• Practice good hygiene and grooming.",
+    "• Stay off your phone and give your full attention.",
+]
+
+# ---------- Chat Route ----------
 @app.route("/chat", methods=["POST"])
 def chat():
     user_input = request.json.get("message", "").strip().lower()
@@ -185,10 +247,7 @@ def chat():
             return jsonify({"response": "Please specify a city name."})
         try:
             res = requests.get(f"https://wttr.in/{city}?format=3")
-            if res.status_code == 200:
-                return jsonify({"response": res.text})
-            else:
-                return jsonify({"response": "Couldn't fetch weather info. Try again."})
+            return jsonify({"response": res.text if res.status_code == 200 else "Couldn't fetch weather info."})
         except Exception as e:
             logging.error(f"Weather error: {e}")
             return jsonify({"response": "Error fetching weather."})
@@ -211,26 +270,29 @@ def chat():
         prompt = user_input.replace("generate code", "").replace("write code", "").strip()
         if not prompt:
             return jsonify({"response": "Please specify the code you want me to generate."})
-        code = fetch_code_from_gfg(prompt)
-        return jsonify({"response": code})
+        return jsonify({"response": fetch_code_from_gfg(prompt)})
 
-    if any(keyword in user_input for keyword in ["trip", "vacation", "places to visit", "travel"]):
-        try:
-            match = re.search(r"(trip to|visit|in|to)\s+([a-zA-Z\s]+)", user_input)
-            location = match.group(2).strip() if match else None
-            if not location:
-                return jsonify({"response": "Please mention a location to get travel suggestions."})
-            return jsonify({"response": scrape_travel_places(location)})
-        except Exception as e:
-            logging.error(f"Trip planner error: {e}")
-            return jsonify({"response": "Something went wrong while planning your trip. Try again."})
+    if any(word in user_input for word in ["trip", "vacation", "places to visit", "travel"]):
+        match = re.search(r"(trip to|visit|in|to)\s+([a-zA-Z\s]+)", user_input)
+        location = match.group(2).strip() if match else None
+        if not location:
+            return jsonify({"response": "Please mention a location to get travel suggestions."})
+        return jsonify({"response": scrape_travel_places(location)})
+
+    if "fitness" in user_input or "health tips" in user_input:
+        tips = get_fitness_tips()
+        return jsonify({"response": tips if tips else "Sorry, I couldn't fetch fitness tips right now."})
+
+    if any(word in user_input for word in ["makeup", "foundation", "blend", "skin"]):
+        return jsonify({"response": get_makeup_tips(user_input)})
+
+    if "dating" in user_input:
+        return jsonify({"response": "Here are some dating tips:\n" + "\n".join(dating_tips)})
 
     try:
         vec = vectorizer.transform([user_input])
         prediction = clf.predict(vec)[0]
         logging.debug(f"Predicted intent: {prediction}")
-        if prediction == "mental_health_support":
-            return jsonify({"response": random.choice(responses["mental_health_support"])})
         return jsonify({"response": random.choice(responses.get(prediction, responses["fallback"]))})
     except Exception as e:
         logging.error(f"Prediction error: {e}")
@@ -242,3 +304,4 @@ def index():
 
 if __name__ == "__main__":
     app.run(debug=True)
+ 
